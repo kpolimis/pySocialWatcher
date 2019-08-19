@@ -70,7 +70,7 @@ Example: pySocialWatcher/pysocialwatcher/facebook_tokens_example.csv
     >>> from pysocialwatcher import watcherAPI 
     >>> watcher = watcherAPI() 
     >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
-    >>> watcher.run_data_collection("pySocialWatcher/pysocialwatcher/quick_example.json")
+    >>> watcher.run_data_collection("pysocialwatcher/input_examples/quick_example.json")
 
 ### How it works (slides):
 Check the slides: https://goo.gl/WzE9ic
@@ -248,11 +248,20 @@ So it will collect the audience for all of the combinations specified in the inp
 
     from pysocialwatcher import constants
     constants.SAVE_EVERY = 1000
+  
+##### Specify that results should be saved to the directory `data/pySocialWatcher/test_query_results/`
+
+    watcher.run_data_collection("pySocialWatcher/pysocialwatcher/quick_example.json", 
+                                "data/pySocialWatcher/test_query_results/")
+
+_Note: Assumes that the directory already exists. Filepath is added to the beginning of the output `.csv` files generated._ 
+
 
 ### Potential Issues:
 1. If you received the error: *You are calling a deprecated version of the Ads API*, means that Facebook updated the API. One way to fix is changing the first 3 variables of the constants.py file to the current Facebook API. This does not guarantee that everything will work.
 
 ### Change Log
+* 2.0a - Fix bug from @joaopalotti and thank @KangboLu, @kpolimis, @khof312 for previous commits.
 * 0.1j - Get more informative dataframes from: get_behavior_dataframe, get_interests_given_query, get_search_targeting_from_query_dataframe
 * 0.1i - Errors more understable and some small fixes.
 * 0.1h - AND working for behavior. Thanks @ianbstewart.
